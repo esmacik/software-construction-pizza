@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/project_draft/src-gen" creationIcons="false" editDirectory="/project_draft.edit/src-gen"
+    editorDirectory="/project_draft.editor/src-gen" modelPluginID="project_draft"
+    modelName="Project_draft" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>project_draft.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Project_draft" disposableProviderFactory="true" ecorePackage="project_draft.ecore#/">
+    <genClasses ecoreClass="project_draft.ecore#//Location">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Location/store"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Location/city"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Location/state"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//Schedule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Schedule/clockInTimes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Schedule/clockOutTimes"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//Store">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Store/order"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Store/feedback"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Store/contactinformation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Store/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Store/startTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Store/closingTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Store/cost"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Store/revenue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Store/menu"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Store/branchmanager"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Store/teammember"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Store/driver"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//Feedback">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Feedback/store"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Feedback/rating"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Feedback/details"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//Order">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Order/item"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Order/feedback"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Order/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Order/totalPrice"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Order/orderDate"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//Delivery">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Delivery/driver"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Delivery/address"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//DineIn">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//DineIn/teammember"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//DineIn/tableNumer"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//CarryOut"/>
+    <genClasses ecoreClass="project_draft.ecore#//ContactInformation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//ContactInformation/order"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//ContactInformation/feedback"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//ContactInformation/store"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//ContactInformation/firstName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//ContactInformation/lastName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//ContactInformation/address"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//ContactInformation/phoneNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//Item">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Item/order"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Item/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Item/cost"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Item/includedByManager"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//Employee">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Employee/schedule"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Employee/salary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Employee/title"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//Driver">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Driver/delivery"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Driver/carMake"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Driver/carModel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//Driver/numOrders"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Driver/store"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//BranchManager">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//BranchManager/configures"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//BranchManager/store"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//TeamMember">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute project_draft.ecore#//TeamMember/currenetDuty"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//TeamMember/dinein"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//TeamMember/store"/>
+    </genClasses>
+    <genClasses ecoreClass="project_draft.ecore#//Menu">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference project_draft.ecore#//Menu/items"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

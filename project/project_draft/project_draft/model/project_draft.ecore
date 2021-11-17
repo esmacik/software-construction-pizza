@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="project_draft" nsURI="http://www.example.org/project_draft"
+    nsPrefix="project_draft">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Location">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="store" ordered="false"
+        upperBound="-1" eType="#//Store" eOpposite="#//Store/location"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="city" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Schedule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="lengthOfClockInTime lengthOfClockOutTime"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="lengthOfClockInTime" value="self.clockInTimes->size() &lt; 8"/>
+      <details key="lengthOfClockOutTime" value="self.clockOutTimes->size() &lt; 8"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockInTimes" ordered="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockOutTimes" ordered="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Store">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="lengthOfStartTime lengthOfClosingTime"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="lengthOfStartTime" value="self.startTime->size() &lt; 8"/>
+      <details key="lengthOfClosingTime" value="self.closingTime->size() &lt; 8"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="order" ordered="false"
+        upperBound="-1" eType="#//Order">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="self.order->select(self.menu.items->includes(self.order.item))"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feedback" ordered="false"
+        upperBound="-1" eType="#//Feedback" eOpposite="#//Feedback/store"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contactinformation" ordered="false"
+        upperBound="-1" eType="#//ContactInformation" eOpposite="#//ContactInformation/store">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="self.contactinformation->select(c | self.feedback->includes(c.feedback))"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//Location"
+        eOpposite="#//Location/store"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" ordered="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="closingTime" ordered="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="revenue" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="menu" eType="#//Menu"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branchmanager" ordered="false"
+        upperBound="-1" eType="#//BranchManager" eOpposite="#//BranchManager/store">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="self.branchmanager->select(menu = self.menu)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="teammember" ordered="false"
+        upperBound="-1" eType="#//TeamMember" eOpposite="#//TeamMember/store"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="driver" ordered="false"
+        upperBound="-1" eType="#//Driver" eOpposite="#//Driver/store"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Feedback">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="noLongerThan"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="noLongerThan" value="self.details.size() &lt; 500"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="store" eType="#//Store"
+        eOpposite="#//Store/feedback"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rating" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="details" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Order">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="item" ordered="false" upperBound="-1"
+        eType="#//Item" eOpposite="#//Item/order"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feedback" eType="#//Feedback"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalPrice" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Delivery" eSuperTypes="#//Order">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="driver" eType="#//Driver"
+        eOpposite="#//Driver/delivery"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="address" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DineIn" eSuperTypes="#//Order">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="teammember" eType="#//TeamMember"
+        eOpposite="#//TeamMember/dinein"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tableNumer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CarryOut" eSuperTypes="#//Order"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContactInformation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="checkPhoneNumberLength checkPhoneNumber"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="checkPhoneNumberLength" value="self.phoneNumber->size() = 11"/>
+      <details key="checkPhoneNumber" value="self.phoneNumber->forAll(p | p = '\\D')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="order" ordered="false"
+        upperBound="-1" eType="#//Order"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feedback" eType="#//Feedback"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="store" ordered="false"
+        upperBound="-1" eType="#//Store" eOpposite="#//Store/contactinformation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="address" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="phoneNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Item">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="order" eType="#//Order"
+        eOpposite="#//Order/item"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="includedByManager" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Employee">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="mustHaveSalary mustHaveTitle"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="mustHaveSalary" value="not salary.oclIsUndefined()"/>
+      <details key="mustHaveTitle" value="not title.oclIsUndefined()"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schedule" eType="#//Schedule"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="salary" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Driver" eSuperTypes="#//Employee">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="setTitle"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="setTitle" value="self.title = 'Driver'"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="delivery" ordered="false"
+        upperBound="-1" eType="#//Delivery" eOpposite="#//Delivery/driver"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="carMake" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="carModel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numOrders" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="store" eType="#//Store"
+        eOpposite="#//Store/driver"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BranchManager" eSuperTypes="#//Employee">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="setTitle"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="setTitle" value="self.title = 'Branch Manager'"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configures" eType="#//Menu"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="store" eType="#//Store"
+        eOpposite="#//Store/branchmanager"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TeamMember" eSuperTypes="#//Employee">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="setTitle"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="setTitle" value="self.title = 'Team Member'"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currenetDuty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dinein" ordered="false"
+        upperBound="-1" eType="#//DineIn" eOpposite="#//DineIn/teammember"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="store" eType="#//Store"
+        eOpposite="#//Store/teammember"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Menu">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items" ordered="false"
+        upperBound="-1" eType="#//Item"/>
+  </eClassifiers>
+</ecore:EPackage>
