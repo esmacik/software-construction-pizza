@@ -232,6 +232,9 @@ public class StoreImpl extends MinimalEObjectImpl.Container implements Store {
 			feedback = new EObjectWithInverseResolvingEList<Feedback>(Feedback.class, this,
 					Project_draftPackage.STORE__FEEDBACK, Project_draftPackage.FEEDBACK__STORE);
 		}
+		order.stream()
+				.filter(o -> o.getFeedback() != null)
+				.forEach(o -> feedback.add(o.getFeedback()));
 		return feedback;
 	}
 

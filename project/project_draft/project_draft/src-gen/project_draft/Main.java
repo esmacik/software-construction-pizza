@@ -40,6 +40,7 @@ public class Main {
         ArrayList<Location> locations = new ArrayList<>();
         locations.add(location1);
         locations.add(location2);
+        System.out.println("Welcome to the global Pizza\n--------------------");
         while (true) {
             System.out.println("Select: \n 1- View locations \n 2- Add location " +
                     "\n 3- exit");
@@ -82,31 +83,32 @@ public class Main {
         viewStore(stores.get(instruction), instruction);
     }
 
-    /* TODO: Lets put the branch manager salary
-    *           The amount of drivers/Team Memebers
-    *           The amount of orders processing
-    *           Closing time & Opening time
-    *           View feedback*/
     public static void viewStore(Store store, int storeNumber) {
         System.out.println("Store:" + storeNumber + "\nRevenue: " + store.getRevenue()  +
                 "\nCost" +
                 ": " + store.getCost() + "\nNumber of employees: " +
-                (store.getTeammember().size()+store.getDriver().size()));
+                (store.getTeammember().size()+store.getDriver().size()) +
+                "\n--------------");
         System.out.println("Store Hours");
         for (int i = 0; i < store.getClosingTime().size(); i++) {
             System.out.println(store.getStartTime().get(i) +"---"+store.getClosingTime().get(i));
         }
+        System.out.println("--------------");
         System.out.println("Menu: ");
         for (Item item : store.getMenu().getItems()) {
-            System.out.println(item.getName());
-            System.out.println("Price: " + item.getCost());
+            System.out.println("\t" + item.getName());
+            System.out.println("\tPrice: " + item.getCost());
+            System.out.println("-------------");
         }
         // Orders processing
-        System.out.println("Customer Feedback");
+        System.out.println("Customer Feedback: ");
         for (Feedback feedback : store.getFeedback()) {
             System.out.println(feedback.getDetails());
             System.out.println("Store Feedback: " + feedback.getRating());
         }
+        System.out.println("-------------");
+        System.out.println("Back to main menu");
+        System.out.println("===================");
     }
 
     public static void addLocations(List<Location> locations) {}
@@ -120,6 +122,7 @@ public class Main {
 
         Store store2 = Project_draftFactoryImpl.init().createStore();
         store2.setMenu(menu);
+        store2.getOrder().addAll(getOrders(menu));
 
         return Arrays.asList(new Store[] {store1, store2});
     }
@@ -134,5 +137,28 @@ public class Main {
                 Project_draftFactoryImpl.init().createItem("Meat Loveres",
                         5.0)));
         return menu;
+    }
+
+    public static List<Order> getOrders(Menu menu) {
+        Order order1 = Project_draftFactory.eINSTANCE.createOrder();
+        order1.getItem().addAll(List.of(menu.getItems().get(0),
+                menu.getItems().get(0)));
+        order1.setPizzaOrder(new PizzaOrder());
+
+        Order order2 = Project_draftFactory.eINSTANCE.createOrder();
+        order1.getItem().addAll(List.of(menu.getItems().get(1),
+                menu.getItems().get(2)));
+        PizzaOrder state1 = new PizzaOrder();
+        state1.received();
+        order1.setPizzaOrder(state1);
+
+        Order order3 = Project_draftFactory.eINSTANCE.createOrder();
+        order1.getItem().addAll(List.of(menu.getItems().get(0)));
+        PizzaOrder state2 = new PizzaOrder();
+        state2.orderC();
+        order3.setFeedback(Project_draftFactoryImpl.createFeedbackSample(
+                Project_draftFactory.eINSTANCE.createFeedback(),
+                "Pizza was great!", 10));
+        return List.of(order1, order2, order3);
     }
 }

@@ -22,6 +22,7 @@ import project_draft.Feedback;
 import project_draft.Item;
 import project_draft.Order;
 import project_draft.Project_draftPackage;
+import state_machine.PizzaOrder;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +60,7 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order {
 	 * @generated
 	 * @ordered
 	 */
-	protected Feedback feedback;
+	protected Feedback feedback = null;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -80,6 +81,8 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	protected PizzaOrder orderProcess;
 
 	/**
 	 * The default value of the '{@link #getTotalPrice() <em>Total Price</em>}' attribute.
@@ -220,6 +223,8 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order {
 	 * @generated
 	 */
 	public double getTotalPrice() {
+		totalPrice = 0;
+		item.forEach(i -> totalPrice += i.getCost());
 		return totalPrice;
 	}
 
@@ -387,6 +392,16 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order {
 			return ORDER_DATE_EDEFAULT == null ? orderDate != null : !ORDER_DATE_EDEFAULT.equals(orderDate);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public PizzaOrder getPizzaOrder() {
+		return this.orderProcess;
+	}
+
+	@Override
+	public void setPizzaOrder(PizzaOrder order) {
+		this.orderProcess = order;
 	}
 
 	/**

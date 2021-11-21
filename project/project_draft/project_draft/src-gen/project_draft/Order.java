@@ -5,6 +5,7 @@ package project_draft;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import state_machine.PizzaOrder;
 
 /**
  * <!-- begin-user-doc -->
@@ -128,5 +129,9 @@ public interface Order extends EObject {
 	 * @generated
 	 */
 	void setOrderDate(String value);
+
+	PizzaOrder getPizzaOrder();
+
+	void setPizzaOrder(PizzaOrder order);
 
 } // Order

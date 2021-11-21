@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import project_draft.*;
+import state_machine.PizzaOrder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -163,8 +164,20 @@ public class Project_draftFactoryImpl extends EFactoryImpl implements Project_dr
 		store.getDriver().addAll(List.of(createDriver(), createDriver()));
 		store.getTeammember().addAll(List.of(createTeamMember(),
 				createTeamMember(), createTeamMember(), createTeamMember()));
-
+		store.getFeedback().addAll(List.of(
+				createFeedbackSample(createFeedback(), "The food was amazing," +
+						" staff could be nicer though.", 5),
+				createFeedbackSample(createFeedback(), "Great Food and great " +
+						"service",	10)
+		));
 		return store;
+	}
+
+	public static Feedback createFeedbackSample(Feedback feedback,
+												String details, int rating) {
+		feedback.setDetails(details);
+		feedback.setRating(rating);
+		return feedback;
 	}
 
 	/**
