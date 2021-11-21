@@ -165,4 +165,5 @@ public interface Project_draftFactory extends EFactory {
 	 */
 	Project_draftPackage getProject_draftPackage();
 
+    Item createItem(String name, double v);
 } //Project_draftFactory

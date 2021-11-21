@@ -20,16 +20,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import project_draft.BranchManager;
-import project_draft.ContactInformation;
-import project_draft.Driver;
-import project_draft.Feedback;
-import project_draft.Location;
-import project_draft.Menu;
-import project_draft.Order;
-import project_draft.Project_draftPackage;
-import project_draft.Store;
-import project_draft.TeamMember;
+import project_draft.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -204,7 +195,7 @@ public class StoreImpl extends MinimalEObjectImpl.Container implements Store {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StoreImpl() {
+    public StoreImpl() {
 		super();
 	}
 
@@ -350,6 +341,8 @@ public class StoreImpl extends MinimalEObjectImpl.Container implements Store {
 	 * @generated
 	 */
 	public double getCost() {
+		getOrder().forEach(
+				order -> order.getItem().forEach(item -> cost += item.getCost()));
 		return cost;
 	}
 
@@ -371,6 +364,9 @@ public class StoreImpl extends MinimalEObjectImpl.Container implements Store {
 	 * @generated
 	 */
 	public double getRevenue() {
+		getOrder().forEach(
+				order -> order.getItem().forEach(
+						item -> revenue += item.getCost() + 3.0));
 		return revenue;
 	}
 

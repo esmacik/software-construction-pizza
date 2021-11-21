@@ -190,7 +190,12 @@ public class Project_draftFactoryImpl extends EFactoryImpl implements Project_dr
 		ItemImpl item = new ItemImpl();
 		return item;
 	}
-
+	public Item createItem(String name, double cost) {
+		ItemImpl item = new ItemImpl();
+		item.setName(name);
+		item.setCost(cost);
+		return item;
+	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -218,6 +223,13 @@ public class Project_draftFactoryImpl extends EFactoryImpl implements Project_dr
 	 */
 	public BranchManager createBranchManager() {
 		BranchManagerImpl branchManager = new BranchManagerImpl();
+		return branchManager;
+	}
+
+	public BranchManager createBranchManager(String firstName,
+											 String lastName) {
+		BranchManagerImpl branchManager = new BranchManagerImpl();
+
 		return branchManager;
 	}
 

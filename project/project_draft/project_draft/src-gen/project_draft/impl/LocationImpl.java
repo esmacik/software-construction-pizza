@@ -3,6 +3,7 @@
 package project_draft.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -93,7 +94,8 @@ public class LocationImpl extends MinimalEObjectImpl.Container implements Locati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LocationImpl() {
+	public LocationImpl() {
+
 		super();
 	}
 

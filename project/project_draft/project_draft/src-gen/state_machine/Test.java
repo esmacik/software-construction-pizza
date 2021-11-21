@@ -1,4 +1,6 @@
-import java.util.Scanner; 
+package state_machine;
+
+import java.util.Scanner;
 
 class Test{
    public static void main(String[] args) {
@@ -29,9 +31,5 @@ class Test{
     else if (instructions == 3)
         order.orderD();
     System.out.println("Status: " + order.getState());
-
-
-
-        
     }
 }
