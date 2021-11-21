@@ -6,6 +6,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
+import java.util.ArrayList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Store</b></em>'.
@@ -46,7 +48,7 @@ public interface Store extends EObject {
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='self.order-&gt;select(self.menu.items-&gt;includes(self.order.item))'"
 	 * @generated
 	 */
-	EList<Order> getOrder();
+	ArrayList<Order> getOrder();
 
 	/**
 	 * Returns the value of the '<em><b>Feedback</b></em>' reference list.

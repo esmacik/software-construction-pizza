@@ -1,5 +1,6 @@
 package project_draft;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import project_draft.Location;
 import project_draft.impl.LocationImpl;
@@ -72,22 +73,40 @@ public class Main {
         int value = 0;
         System.out.println("Select location:\nType -1 to exit");
         for (Store store : stores) {
-            System.out.println("Store:" + value + "\n" + store.toString());
+            System.out.println("Store:" + value);
             value++;
         }
         Scanner scanner = new Scanner(System.in);
         int instruction = scanner.nextInt();
         if (instruction == -1) return;
-        viewStore(stores.get(instruction));
+        viewStore(stores.get(instruction), instruction);
     }
 
     /* TODO: Lets put the branch manager salary
     *           The amount of drivers/Team Memebers
-    *           Print out the menu
     *           The amount of orders processing
     *           Closing time & Opening time
     *           View feedback*/
-    public static void viewStore(Store store) {
+    public static void viewStore(Store store, int storeNumber) {
+        System.out.println("Store:" + storeNumber + "\nRevenue: " + store.getRevenue()  +
+                "\nCost" +
+                ": " + store.getCost() + "\nNumber of employees: " +
+                (store.getTeammember().size()+store.getDriver().size()));
+        System.out.println("Store Hours");
+        for (int i = 0; i < store.getClosingTime().size(); i++) {
+            System.out.println(store.getStartTime().get(i) +"---"+store.getClosingTime().get(i));
+        }
+        System.out.println("Menu: ");
+        for (Item item : store.getMenu().getItems()) {
+            System.out.println(item.getName());
+            System.out.println("Price: " + item.getCost());
+        }
+        // Orders processing
+        System.out.println("Customer Feedback");
+        for (Feedback feedback : store.getFeedback()) {
+            System.out.println(feedback.getDetails());
+            System.out.println("Store Feedback: " + feedback.getRating());
+        }
     }
 
     public static void addLocations(List<Location> locations) {}
@@ -107,19 +126,13 @@ public class Main {
 
     public static Menu getDefaultMenu() {
         Menu menu = Project_draftFactoryImpl.init().createMenu();
-        menu.getItems().addAll(Arrays.asList(new Item[] {
+        menu.getItems().addAll(List.of(
                 Project_draftFactoryImpl.init().createItem("Cheese Pizza", 4.5),
                 Project_draftFactoryImpl.init().createItem("Pizza", 4.0),
                 Project_draftFactoryImpl.init().createItem("Bread Sticks",
                         3.5),
                 Project_draftFactoryImpl.init().createItem("Meat Loveres",
-                        5.0),
-        }));
+                        5.0)));
         return menu;
-    }
-
-    public static Employee createBranchManager() {
-
-        return null;
     }
 }

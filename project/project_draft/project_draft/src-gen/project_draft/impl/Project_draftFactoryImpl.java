@@ -6,11 +6,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import project_draft.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * <!-- begin-user-doc -->
@@ -108,6 +113,24 @@ public class Project_draftFactoryImpl extends EFactoryImpl implements Project_dr
 	 */
 	public Schedule createSchedule() {
 		ScheduleImpl schedule = new ScheduleImpl();
+		schedule.getClockInTimes().addAll(List.of(
+				"Monday: 11:00 AM",
+				"Tuesday: 11:10 PM",
+				"Wednesday: 10:59 AM",
+				"Thursday: 12:05 PM ",
+				"Friday:",
+				"Saturday:",
+				"Sunday:"
+		));
+		schedule.getClockOutTimes().addAll(List.of(
+				"Monday: 7:00 PM",
+				"Tuesday: 7:00 PM",
+				"Wednesday: 7:00 PM",
+				"Thursday: 7:00 PM ",
+				"Friday: ",
+				"Saturday:",
+				"Sunday: "
+		));
 		return schedule;
 	}
 
@@ -118,6 +141,29 @@ public class Project_draftFactoryImpl extends EFactoryImpl implements Project_dr
 	 */
 	public Store createStore() {
 		StoreImpl store = new StoreImpl();
+		store.eSet(Project_draftPackage.STORE__ORDER, new ArrayList<>());
+		store.getStartTime().addAll(List.of(
+				"Monday: 12:00 PM",
+				"Tuesday: 12:00 PM",
+				"Wednesday: 12:00 PM",
+				"Thursday: 12:00 PM ",
+				"Friday: 12:00 PM ",
+				"Saturday: 12:00 PM ",
+				"Sunday: 12:00 PM "
+		));
+		store.getClosingTime().addAll(List.of(
+				"Monday: 9:00 PM",
+				"Tuesday: 9:00 PM",
+				"Wednesday: 9:00 PM",
+				"Thursday: 9:00 PM ",
+				"Friday: 11:00 PM ",
+				"Saturday: 11:00 PM ",
+				"Sunday: 7:00 PM "
+		));
+		store.getDriver().addAll(List.of(createDriver(), createDriver()));
+		store.getTeammember().addAll(List.of(createTeamMember(),
+				createTeamMember(), createTeamMember(), createTeamMember()));
+
 		return store;
 	}
 
@@ -213,6 +259,11 @@ public class Project_draftFactoryImpl extends EFactoryImpl implements Project_dr
 	 */
 	public Driver createDriver() {
 		DriverImpl driver = new DriverImpl();
+		driver.setSchedule(createSchedule());
+		driver.setSalary(25.0);
+		driver.setTitle("Driver");
+		driver.setCarMake("Jeep");
+		driver.setCarModel("Jeep 2018 Wrangler Rubicon");
 		return driver;
 	}
 
@@ -240,6 +291,8 @@ public class Project_draftFactoryImpl extends EFactoryImpl implements Project_dr
 	 */
 	public TeamMember createTeamMember() {
 		TeamMemberImpl teamMember = new TeamMemberImpl();
+		teamMember.setSalary(20.0);
+		teamMember.setSchedule(createSchedule());
 		return teamMember;
 	}
 

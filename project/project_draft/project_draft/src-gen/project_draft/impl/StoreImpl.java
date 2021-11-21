@@ -2,6 +2,7 @@
  */
 package project_draft.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -88,6 +89,8 @@ public class StoreImpl extends MinimalEObjectImpl.Container implements Store {
 	 * @ordered
 	 */
 	protected Location location;
+
+	protected ArrayList<Order> order = new ArrayList<>();
 
 	/**
 	 * The cached value of the '{@link #getStartTime() <em>Start Time</em>}' attribute list.
@@ -215,8 +218,8 @@ public class StoreImpl extends MinimalEObjectImpl.Container implements Store {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Order> getOrder() {
-		return (EList<Order>) ORDER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public ArrayList<Order> getOrder() {
+		return order;
 	}
 
 	/**
@@ -429,9 +432,11 @@ public class StoreImpl extends MinimalEObjectImpl.Container implements Store {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<BranchManager> getBranchmanager() {
-		return (EList<BranchManager>) BRANCHMANAGER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		return (EList<BranchManager>)
+				BRANCHMANAGER__ESETTING_DELEGATE.dynamicGet(
+						this, null,
+						0, true, false);
 	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
