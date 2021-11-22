@@ -49,9 +49,7 @@ public class Main {
             if (instructions == 1) {
                 locations(locations);
             }
-            if (instructions == 2) {
-                addLocations(locations);
-            }
+            if (instructions == 2) {}
             if (instructions == 3) return;
         }
     }
@@ -106,13 +104,24 @@ public class Main {
             System.out.println(feedback.getDetails());
             System.out.println("Store Feedback: " + feedback.getRating());
         }
-        System.out.println("-------------");
+        System.out.println("-----------");
+        viewOrders(store.getOrder());
         System.out.println("Back to main menu");
         System.out.println("===================");
     }
 
-    public static void addLocations(List<Location> locations) {}
-
+    public static void viewOrders(List<Order> orders) {
+        System.out.println("Orders: ");
+        for (Order order : orders) {
+            System.out.println("Items: ");
+            for (Item item :
+                    order.getItem()) System.out.println("\t" + item.getName());
+            System.out.println("Price: " + order.getTotalPrice());
+            System.out.println("Order process: " +
+                    order.getPizzaOrder().getState());
+            System.out.println("------------");
+        }
+    }
     public static List<Store> getSampleStoreData1(Menu menu) {
 
         Store store1 = Project_draftFactoryImpl.init().createStore();
@@ -141,24 +150,36 @@ public class Main {
 
     public static List<Order> getOrders(Menu menu) {
         Order order1 = Project_draftFactory.eINSTANCE.createOrder();
-        order1.getItem().addAll(List.of(menu.getItems().get(0),
-                menu.getItems().get(0)));
+        order1.getItem().addAll(List.of(
+                menu.getItems().get(0),
+                menu.getItems().get(1)));
         order1.setPizzaOrder(new PizzaOrder());
+        System.out.println("ORDER1 " + order1.getItem().size());
+        order1.getItem().forEach(item -> System.out.println(
+                "\t" + item.getName()));
+        System.out.println("Price: " + order1.getTotalPrice());
+        System.out.println("Order process: " +
+                order1.getPizzaOrder().getState());
+        System.out.println();
 
         Order order2 = Project_draftFactory.eINSTANCE.createOrder();
-        order1.getItem().addAll(List.of(menu.getItems().get(1),
+        order2.getItem().addAll(List.of(
+                menu.getItems().get(1),
                 menu.getItems().get(2)));
         PizzaOrder state1 = new PizzaOrder();
         state1.received();
-        order1.setPizzaOrder(state1);
+        order2.setPizzaOrder(state1);
 
         Order order3 = Project_draftFactory.eINSTANCE.createOrder();
-        order1.getItem().addAll(List.of(menu.getItems().get(0)));
+        order3.getItem().addAll(List.of(menu.getItems().get(0)));
         PizzaOrder state2 = new PizzaOrder();
+        state2.received();
+        state2.completed();
         state2.orderC();
         order3.setFeedback(Project_draftFactoryImpl.createFeedbackSample(
                 Project_draftFactory.eINSTANCE.createFeedback(),
                 "Pizza was great!", 10));
-        return List.of(order1, order2, order3);
+        order3.setPizzaOrder(state2);
+        return List.of(order2, order3);
     }
 }
